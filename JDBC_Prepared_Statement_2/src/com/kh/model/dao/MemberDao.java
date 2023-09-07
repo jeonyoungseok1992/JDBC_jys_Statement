@@ -126,7 +126,7 @@ public class MemberDao {
 		Statement stmt = null;
 		
 		//실행 할 sql
-		String sql = "SELECT * FROM MEMBER";
+		String sql = "SELECT * FROM MEMBER ORDER BY USERNO";
 		
 		//JDBC 순서대로
 		
@@ -280,9 +280,9 @@ public class MemberDao {
 			
 			//3) Statement 생성
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, %Keyword%);
+			pstmt.setString(1, "%"+Keyword+"%");
 			//4, 5) sql문 실행 및 결과 받기
-			rset = executeQuery();
+			rset = pstmt.executeQuery();
 			
 			//6) ResultSet으로부터 데이터를 하나씩 뽑기
 			while(rset.next()) {
@@ -328,8 +328,7 @@ public class MemberDao {
 	}
 	
 	
-	
-	
+
 	public int updateMember(Member m) {
 		//update문 => 처리 된 행 수(int) => 트랜잭션
 		

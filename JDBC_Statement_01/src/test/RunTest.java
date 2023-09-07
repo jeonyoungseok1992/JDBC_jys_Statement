@@ -10,7 +10,7 @@ import java.sql.Statement;
 public class RunTest {
 
 	public static void main(String[] args) {
-		/*
+		/*///////////////
 		 * JDBC용 객체
 		 * -Connection : DB의 연결정보를 담고있는 객체                 //객체여서 앞에 대문자
 		 * -[Prepared]Statement : 연결 된 DB에 SQL문을 전달해서 실행하고, 결과를 받아내는 객체
