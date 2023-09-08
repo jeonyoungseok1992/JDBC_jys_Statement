@@ -1,5 +1,7 @@
 package com.kh.model.dao;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,8 +14,24 @@ import com.kh.model.vo.Member;
 
 
 public class MemberDao {
+	/**
+	 *  기존방식 : DAO 클래스에 사용자가 요청할때마다 실행해야되는 SQL문을 자바소스코드 내에 명시적으로 작성 => 정적코드방식
+	 *  
+	 *> 문제점 : SQL문을 수정해야 될 경우 자바소스코드를 수정해야됨 => 수정 된 내용을 변경시키고자 한다면 프로그램을 종료 후 재구동 해야됨
+	 *
+	 *> 해결방안 : SQL문들을 별도로 관리하는 외부 파일(.xml)로 만들어서 실시간으로 그 파일에 기록된 SQL문을 읽어들여서 실행 => 동적코딩방식
+	 */
 	
 	private Properties prop = new Properties();
+	
+	
+	public MemberDao() {
+		try {
+			prop.loadFromXML(new FileInputStream("resources/query.xml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public int insertMember(Connection conn, Member m) {
 		

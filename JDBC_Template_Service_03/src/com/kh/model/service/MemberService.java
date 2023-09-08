@@ -11,6 +11,7 @@ public class MemberService {
 	//1. JDBC Driver등록
 	//2. Connection 객체 생성
 	//3. Connection 객체 처리
+	// => 트랜잭션 관리?????
 	
 	public int insertMember(Member m) {
 		Connection conn = JDBCTemplate.getConnection();
